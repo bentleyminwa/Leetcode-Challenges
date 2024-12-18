@@ -42,20 +42,18 @@ const userNames = getNames([
   },
 ]);
 
-console.log(userNames);
+// console.log(userNames);
 
-const [pokemonList, setPokemonList] = useState([]);
+// closures
+function outerFunc() {
+  let count = 0;
 
-async function getPokemonList() {
-  const response = await fetch(url);
-  return response.json();
+  return function innerFunc() {
+    count++;
+    return count;
+  };
 }
 
-useEffect(() => {
-  async function fetchData() {
-    const data = await getPokemonList();
-    setPokemonList(data);
-  }
+const increment = outerFunc();
 
-  fetchData();
-}, []);
+console.log(increment());
