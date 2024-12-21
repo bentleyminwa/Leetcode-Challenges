@@ -56,4 +56,16 @@ function outerFunc() {
 
 const increment = outerFunc();
 
-console.log(increment());
+// console.log(increment());
+
+function calculateDaysBetweenDates(date1, date2) {
+  const diff = date2 - date1;
+  const days = diff / (1000 * 60 * 60 * 24);
+  return Math.abs(days);
+}
+
+const result = calculateDaysBetweenDates(
+  new Date(2024, 1, 1),
+  new Date(2024, 12, 31)
+);
+console.log(result);
