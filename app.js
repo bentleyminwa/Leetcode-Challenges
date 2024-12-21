@@ -1,9 +1,7 @@
-function App() {
-  return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
-  );
-}
-
-export default App;
+document.addEventListener("visibilitychange", function () {
+  if (document.hidden) {
+    console.log("The page is hidden");
+  } else {
+    // The page is visible
+  }
+});
