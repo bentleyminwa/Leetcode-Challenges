@@ -1,71 +1,27 @@
-// function that takes in any number of arguments and returns the sum of all those numbers
-function add(...args) {
-  let sum = 0;
+// Write a function expect that helps developers test their code.
+// It should take in any value val and return an object with the following two functions.
 
-  // for (let i = 0; i < args.length; i++) {
-  //   sum += args[i];
-  // }
+// toBe(val) accepts another value and returns true if the two values === each other.
+// If they are not equal, it should throw an error "Not Equal".
+// notToBe(val) accepts another value and returns true if the two values !== each other.
+// If they are equal, it should throw an error "Equal"
 
-  for (num of args) {
-    sum += num;
-  }
-
-  return sum;
-}
-
-// console.log("sum all", add(2, 3, 4, 5));
-
-function getNames(users) {
-  const names = users.map((user) => {
-    // evaluates to true if the object contains the property 'name'
-    if (user.hasOwnProperty("name")) {
-      return user.name;
-    } else {
-      console.log("user has no property 'name'.");
-    }
-  });
-  return names;
-}
-
-const userNames = getNames([
-  {
-    id: 1,
-    name: "Daryl",
-  },
-  {
-    id: 2,
-    name: "Rick",
-  },
-  {
-    id: 3,
-    name: "Maggie",
-  },
-]);
-
-// console.log(userNames);
-
-// closures
-function outerFunc() {
-  let count = 0;
-
-  return function innerFunc() {
-    count++;
-    return count;
+function expect(val) {
+  return {
+    toBe: function (val2) {
+      if (val !== val2) {
+        throw new Error("Not Equal");
+      }
+      return true;
+    },
+    notToBe: function (val2) {
+      if (val === val2) {
+        throw new Error("Equal");
+      }
+      return true;
+    },
   };
 }
 
-const increment = outerFunc();
-
-// console.log(increment());
-
-function calculateDaysBetweenDates(date1, date2) {
-  const diff = date2 - date1;
-  const days = diff / (1000 * 60 * 60 * 24);
-  return Math.abs(days);
-}
-
-const result = calculateDaysBetweenDates(
-  new Date(2024, 1, 1),
-  new Date(2024, 12, 31)
-);
-console.log(result);
+const result = expect(1).toBe(1); // true
+const result2 = expect(1).notToBe(2); // true
