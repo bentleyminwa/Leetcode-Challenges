@@ -70,6 +70,7 @@ const doubled = mapArray(numbers, multiplyBy2); // [2, 4, 6, 8]
 // Please solve it without the built-in Array.filter method.
 
 // ============================== Solution ============================== //
+
 function filterArray(arr, fn) {
   let output = [];
 
